@@ -1,0 +1,320 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(70, 7, 95, 0.384); Cor preta semi-transparente */
+  /* z-index: 1; Garante que a tela cinza fique acima da imagem de fundo */
+}
+
+body {
+  /* background-size: cover; */
+  background-position: center; 
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+}
+
+.bodyimg {
+  background-image: url('../images/mr-robot-safety-tips-featured.jpg');
+  /* width: 300px;
+  height: 300px; */
+  background-position: top center;
+  background-size: cover;
+}
+
+@keyframes blink-text {
+  0%, 100% {
+    color: white;
+  }
+  50% {
+    color: red; /* Escolha a tonalidade de vermelho que preferir */
+  }
+}
+
+.data span.blinking {
+  animation: blink-text 2s linear infinite;
+}
+
+.header {
+  text-align: center; /* Centraliza o texto */
+  padding: -200px; /* Adiciona um espaçamento ao redor do texto */
+  position: fixed; /* Fixa o cabeçalho no topo */
+  left: -600px;
+  width: 100%; /* Define a largura do cabeçalho para ocupar toda a largura da tela */
+  z-index: 999; /* Garante que o cabeçalho fique acima dos outros elementos */
+  margin: -100px;
+  top: 15px;
+}
+
+.header img {
+  max-width: 300px; /* Define a largura máxima da logo */
+  transition: transform 0.5s ease;
+}
+
+.header img:hover {
+  transform: scale(1.15);
+}
+
+.main {
+  position: relative; /* Define o posicionamento relativo para poder definir um z-index */
+  z-index: 1; /* Coloca os profile cards acima da tela cinza */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 100px; /* Adiciona um espaço para acomodar o cabeçalho fixo */
+}
+
+@keyframes neon-border {
+  0% {
+    box-shadow:
+    2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07).
+  }
+}
+
+.badge-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px; /* Espaço entre a social-bar e a badge-bar */
+  margin-left: 76px;
+  gap: 5px;
+  padding: 5px 55px;
+  left: 50px;
+  background-color: #000000ae;
+  margin-bottom: -25px;
+  border-radius: 12px;
+  border: 2px solid #ff006a86;
+  position: center;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  animation: neon-border 200s linear infinite alternate;
+  width: 230px; /* A largura será a mesma que a da social-bar para consistência */
+}
+
+.badge-icon {
+  position: relative;  /* Posição relativa para basear o posicionamento absoluto da tooltip */
+  display: inline-block;  /* Garante que o span possua dimensões para posicionar a tooltip */
+  cursor: pointer;
+  margin-left: 8px;
+  display: center;
+}
+.badge-icon:hover {
+  color: #9b31b6;
+}
+
+.badge-icon::after {
+  content: attr(data-title);
+  position: absolute;
+  top: 100%; /* Posicionada abaixo do ícone */
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto; /* Permite que a largura se ajuste ao conteúdo */
+  padding: 5px 10px;
+  background-color: #333; /* Fundo sólido */
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 12px;
+  min-width: 200px; /* Largura mínima para garantir visibilidade */
+  max-width: 700px; /* Largura máxima para evitar tooltips excessivamente largas */
+  overflow: visible; /* Permite que o conteúdo determine o tamanho da tooltip */
+  white-space: pre-wrap; /* Impede a quebra de linha dentro da tooltip */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+}
+
+.badge-icon:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+.profile-card {
+  position: relative;
+  display: inline-block; /* Alterado de flex para inline-block */
+  /* Removido flex-direction */
+  align-items: center;
+  /* Removida a propriedade top: -100px; */
+  width: 280px; /* Definindo uma largura fixa para os profile cards */
+  border-radius: 25px;
+  padding: 60px;
+  background-color: #000000ab;
+  color: #fff;
+  transition: transform 0.3s;
+  cursor: pointer;
+  margin: 50px 50px; /* Reduzindo a margem superior e adicionando margem lateral */
+  border: 3px solid #0690ec86;
+  animation: neon-border 2s linear infinite alternate;
+  top: -40px;
+}
+
+
+.profile-card::before {
+  content: "";
+  position: absolute;
+  top: -75px; /* Posiciona o banner 75px acima do perfil */
+  left: 0;
+  width: 100%;
+  height: px; /* Altura do banner */
+  background-size: cover;
+  background-position: center;
+  z-index: -1; /* Garante que o banner fique atrás do conteúdo */
+  border-top-left-radius: 25px; /* Borda arredondada superior esquerda */
+  border-top-right-radius: 25px; /* Borda arredondada superior direita */
+}
+
+.data span {
+  color: #cac6c6ad; /* Cor desejada para o texto */
+  display: block; /* Certifique-se de que cada span esteja em sua própria linha */
+  margin-top: 5px; /* Ajuste a margem superior conforme necessário */
+  margin-left: auto; /* Alinha o span à direita */
+  margin-right: auto; /* Alinha o span à esquerda */
+  width: fit-content; /* Define a largura do span conforme o conteúdo */
+}
+
+.banner-profile1::before {
+  background-image: url('caminho_para_sua_imagem_de_banner1.jpg'); /* Substitua pelo caminho da imagem do banner do primeiro perfil */
+}
+
+.banner-profile2::before {
+  background-image: url('caminho_para_sua_imagem_de_banner2.jpg'); /* Substitua pelo caminho da imagem do banner do segundo perfil */
+}
+
+.profile-card:hover {
+  transform: scale(1.05);
+}
+
+.image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.data h2, .data span {
+  text-align: center;
+}
+
+.social-bar {
+  display: flex;
+  justify-content: center;
+  margin-top: 55px;
+  margin-left: -39px;
+  background-color: #000000ae; /* Lighter than the card background */
+  left: 10px;
+  width: 230px;
+  height: 40px;
+  padding: 20px 23px;
+  border-radius: 12px;
+  border: 2px solid #0690ec86;
+  z-index: 3;
+}
+
+.extra-image {
+  position: absolute; /* Posicionamento absoluto para sobrepor */
+  bottom: 200px; /* Ajustar conforme necessário para posicionar corretamente a imagem */
+  left: 50%; /* Posiciona no centro horizontal */
+  transform: translateX(-50%); /* Desloca para a esquerda metade da sua própria largura, centralizando */
+  z-index: 2; /* Ajustar se necessário para garantir que fique acima de outros conteúdos */
+  color: purple;
+}
+
+.extra-image img {
+  display: block; /* Assegura que a imagem não tenha espaço extra embaixo */
+  width: 650px; /* Largura da imagem */
+  height: auto; /* Altura automática para manter proporção */
+}
+
+.social-icon {
+  margin: 0 13px;
+  font-size: 24px;
+  color: #fff; /* Cor padrão dos ícones */
+  margin-top: -12px;
+  z-index: 4;
+  transition: transform 0.3s, color 0.3s; /* Adiciona transição para o efeito de zoom e alteração de cor */
+}
+
+.social-icon:hover {
+  transform: scale(1.2); /* Zoom no ícone */
+}
+
+/* Defina a cor original de cada ícone */
+.social-icon.discord i {
+  color: #7289da; /* Cor original do Discord */
+}
+
+.social-icon.steam i {
+  color: #171a21; /* Cor original do Steam */
+}
+
+.social-icon.spotify i {
+  color: #1ed760; /* Cor original do Spotify */
+}
+
+/* CSS para os controles do carrossel */
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 2; /* Garante que os controles fiquem acima dos cards */
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transition: transform 0.5s ease;
+}
